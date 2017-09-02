@@ -19,7 +19,12 @@ RUN set -ex \
     && make \
     && apt-get remove -y ${BUILD_DEP} \
     && apt-get clean
+RUN set -ex \
+    && cd ${REPO_DIR} \
+    && mv ./programs/witness_node/witness_node /usr/bin/ \
+    && mv ./programs/cli_wallet/cli_wallet /usr/bin/ \
+    && rm -rf /${REPO_DIR}
 
 WORKDIR ${REPO_DIR}
 
-CMD ["./programs/witness_node/witness_node"]
+CMD ["witness_node"]
