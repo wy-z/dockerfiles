@@ -1,7 +1,7 @@
 
 FROM ubuntu:16.04
 
-ENV REPO https://github.com/bitshares/bitshares-core
+ENV REPO bitshares/bitshares-core
 ENV REPO_DIR bitshares-core
 ENV BUILD_DEP curl jq libtool autoconf cmake git libboost-all-dev libssl-dev
 
