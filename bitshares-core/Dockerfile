@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 
 ENV REPO bitshares/bitshares-core
 ENV REPO_DIR bitshares-core
-ENV BUILD_DEP curl c++ jq libtool autoconf cmake git libboost-all-dev libssl-dev
+ENV BUILD_DEP curl g++ jq libtool autoconf cmake git libboost-all-dev libssl-dev
 
 RUN set -ex \
     && apt-get update \
