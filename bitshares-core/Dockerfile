@@ -10,7 +10,7 @@ RUN set -ex \
     && apt-get install -y ${BUILD_DEP}
 RUN set -ex \
     && curl -L $(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | \
-       jq --raw-output '.assets[0] | .browser_download_url') > ${REPO_DIR}.tar.gz \
+       jq --raw-output '.tarball_url') > ${REPO_DIR}.tar.gz \
     && tar zxf  ${REPO_DIR}.tar.gz
 RUN set -ex \
     && cd ${REPO_DIR}* \
