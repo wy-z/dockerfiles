@@ -3,20 +3,20 @@ FROM ubuntu:16.04
 
 ENV REPO bitshares/bitshares-core
 ENV REPO_DIR bitshares-core
-ENV BUILD_DEP curl jq libtool autoconf cmake git libboost-all-dev libssl-dev
+ENV BUILD_DEP curl c++ jq libtool autoconf cmake git libboost-all-dev libssl-dev
 
 RUN set -ex \
     && apt-get update \
     && apt-get install -y ${BUILD_DEP}
 RUN set -ex \
-    && curl -L $(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | \
-       jq --raw-output '.tarball_url') > ${REPO_DIR}.tar.gz \
-    && tar zxf  ${REPO_DIR}.tar.gz
+    && git clone https://github.com/${REPO} \
+    && cd ${REPO_DIR} \
+    && git checkout $(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | jq --raw-output '.tag_name') \
+    && git submodule update --init --recursive
 RUN set -ex \
-    && cd ${REPO_DIR}* \
-        && git submodule update --init --recursive \
-        && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo . \
-        && make \
+    && cd ${REPO_DIR} \
+    && cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo . \
+    && make \
     && apt-get remove -y ${BUILD_DEP} \
     && apt-get clean
 
