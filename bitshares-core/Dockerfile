@@ -18,6 +18,7 @@ RUN set -ex \
     && mv ./programs/cli_wallet/cli_wallet /usr/bin/ \
     && rm -rf /${REPO_DIR} \
     && apt-get remove -y ${BUILD_DEP} \
-    && apt-get clean
+    && apt-get clean \
+    && apt-get autoremove
 
 CMD ["witness_node"]
