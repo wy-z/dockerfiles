@@ -19,6 +19,6 @@ RUN set -ex \
     && rm -rf /${REPO_DIR} \
     && apt-get remove -y ${BUILD_DEP} \
     && apt-get clean \
-    && apt-get autoremove
+    && apt-get autoremove -y
 
 CMD ["witness_node"]
