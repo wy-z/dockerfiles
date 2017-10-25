@@ -3,11 +3,12 @@ FROM ubuntu:16.04
 
 ENV REPO bitshares/bitshares-core
 ENV REPO_DIR bitshares-core
-ENV BUILD_DEP curl g++ jq libtool autoconf cmake git libboost-all-dev libssl-dev
+ENV BUILD_DEP curl jq g++ libtool autoconf cmake git libboost-all-dev libssl-dev
 
 RUN set -ex \
     && apt-get update \
-    && apt-get install -y ${BUILD_DEP} \
+    && apt-get install -y ${BUILD_DEP}
+RUN set -ex \
     && git clone https://github.com/${REPO} \
     && cd ${REPO_DIR} \
     && git checkout $(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | jq --raw-output '.tag_name') \
