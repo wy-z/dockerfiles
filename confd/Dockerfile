@@ -4,7 +4,7 @@ FROM alpine
 ENV REPO kelseyhightower/confd
 ENV GOPATH /root/go
 ENV REPO_DIR ${GOPATH}/src/github.com/kelseyhightower/confd
-ENV BUILD_DEP curl git jq make go gcc musl-dev
+ENV BUILD_DEP curl git jq make go musl-dev
 
 RUN set -ex \
     && apk add --no-cache ${BUILD_DEP} \
@@ -18,5 +18,8 @@ RUN set -ex \
     && apk del --purge ${BUILD_DEP} \
     && rm -rf ${GOPATH} \
     && rm -rf /var/cache/apk/*
+
+VOLUME /etc/confd/templates/
+VOLUME /etc/confd/conf.d/
 
 CMD ["confd"]
