@@ -27,8 +27,7 @@ RUN set -ex \
                              openssl-dev \
                              pcre-dev \
                              tar \
-                             udns-dev
-RUN set -ex \
+                             udns-dev \
     && git clone https://github.com/${REPO} \
     && cd ${REPO_DIR} \
     && git checkout $(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | jq --raw-output '.tag_name') \
