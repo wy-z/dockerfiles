@@ -7,8 +7,7 @@ ENV BUILD_DEP curl jq g++ libtool autoconf cmake git libboost-all-dev libssl-dev
 
 RUN set -ex \
     && apt-get update \
-    && apt-get install -y ${BUILD_DEP}
-RUN set -ex \
+    && apt-get install -y ${BUILD_DEP}\
     && git clone https://github.com/${REPO} \
     && cd ${REPO_DIR} \
     && git checkout $(curl -sSL https://api.github.com/repos/${REPO}/releases/latest | jq --raw-output '.tag_name') \
