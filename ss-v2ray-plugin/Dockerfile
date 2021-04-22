@@ -1,6 +1,6 @@
 FROM alpine as builder
 ARG WORKSPACE=/ss-v2ray
-ARG RELEASE_URL=https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.0/v2ray-plugin-linux-amd64-v1.3.0.tar.gz
+ARG RELEASE_URL=https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.1/v2ray-plugin-linux-amd64-v1.3.1.tar.gz
 
 RUN set -ex \
     && apk add --no-cache wget \
